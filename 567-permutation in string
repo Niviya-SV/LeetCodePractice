@@ -1,0 +1,46 @@
+class Solution {
+    public boolean checkInclusion(String s1, String s2) {
+        int k=s1.length();
+        boolean ans=false;
+        int count=0;
+        int arr1[]=new int[26];
+        int arr2[]=new int[26];
+        if(k>s2.length()){
+            return false;
+        }
+        for(char c:s1.toCharArray()){
+            arr1[c-'a']++;
+        }
+        for(int i=0;i<k;i++){
+            char c=s2.charAt(i);
+                arr2[c-'a']++;
+            
+        }
+        for(int i=0;i<26;i++){
+            if(arr1[i]==arr2[i]){
+                count++;
+            }
+        }
+        if(count==26){
+            ans=true;
+        }
+        for(int i=k;i<s2.length();i++){
+            char left=s2.charAt(i-k);
+            arr2[left-'a']--;
+            char right=s2.charAt(i);
+            arr2[right-'a']++;
+            count=0;
+            for(int j=0;j<26;j++){
+                if(arr1[j]==arr2[j]){
+                    count++;
+                }
+            }
+            if(count==26){
+                ans=true;
+            }
+
+        }
+        return ans;
+
+    }
+}
