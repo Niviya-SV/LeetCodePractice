@@ -1,0 +1,30 @@
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+        int i=0;
+        int j=0;
+        int l=s.length();
+        int l1=t.length();
+        boolean v=false;
+        int count=0;
+        while(i<l&&j<l1){
+            char c=s.charAt(i);
+            char d=t.charAt(j);
+            if(c==d){
+                count++;
+                i++;
+                j++;
+                if(count==l){
+                    break;
+                }
+            }
+            else{
+                j++;
+            }
+
+        }
+        if(count==l){
+         v=true;
+        }
+        return v;
+    }
+}
